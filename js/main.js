@@ -263,18 +263,34 @@ function showToast(msg) {
     setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
-    setTimeout(() => {
+    const data = new FormData(form);
+    const json = Object.fromEntries(data.entries());
+
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(json)
+        });
+        const result = await res.json();
+        if (result.success) {
+            form.reset();
+            showToast('Message received! I\'ll get back to you soon.');
+        } else {
+            showToast('Something went wrong. Please try again.');
+        }
+    } catch {
+        showToast('Network error. Please check your connection.');
+    } finally {
         btn.textContent = 'Send Message';
         btn.disabled = false;
-        form.reset();
-        showToast('Message received! I\'ll get back to you soon.');
-    }, 1200);
+    }
 });
 
 /* ── Custom Cursor (desktop) ─────────────────────── */

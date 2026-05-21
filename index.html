@@ -601,17 +601,20 @@
                     </div>
                 </div>
                 <form class="contact-form reveal-right" id="contactForm" novalidate>
+                    <input type="hidden" name="access_key" value="2cb88d5e-084d-49f8-a627-4db7c7e3d565">
+                    <input type="hidden" name="subject" value="New message from NekoNeko Portfolio">
+                    <input type="hidden" name="from_name" value="NekoNeko Portfolio">
                     <div class="f-group">
-                        <input type="text" class="f-input" placeholder="Your Name" required>
+                        <input type="text" name="name" class="f-input" placeholder="Your Name" required>
                     </div>
                     <div class="f-group">
-                        <input type="email" class="f-input" placeholder="Your Email" required>
+                        <input type="email" name="email" class="f-input" placeholder="Your Email" required>
                     </div>
                     <div class="f-group">
-                        <input type="text" class="f-input" placeholder="Subject">
+                        <input type="text" name="subject_line" class="f-input" placeholder="Subject">
                     </div>
                     <div class="f-group">
-                        <textarea class="f-input f-textarea" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea name="message" class="f-input f-textarea" placeholder="Your Message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Send Message</button>
                 </form>
